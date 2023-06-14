@@ -1,3 +1,4 @@
+using API.Extensions;
 using Aplication.Contracts;
 using Aplication.Services;
 using DataAccess;
@@ -7,6 +8,8 @@ using DataAccess.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.ConfigureCors(); // politica CORS de la app
 
 builder.Services.AddControllers();
 
@@ -28,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
